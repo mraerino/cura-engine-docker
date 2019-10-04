@@ -9,6 +9,5 @@ RUN mv CuraEngine-${VERSION} CuraEngine && cd CuraEngine && ./docker/build.sh
 
 FROM centos:7
 
-COPY --from=build /usr/lib64/libgomp.so.1.0.0 /usr/lib64/
-RUN cd /usr/lib64; ln -s libgomp.so.1.0.0 libgomp.so.1
+RUN yum -y -q install libgomp
 COPY --from=build /home/ultimaker/CuraEngine/build /opt/CuraEngine
