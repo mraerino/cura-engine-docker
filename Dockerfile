@@ -11,6 +11,8 @@ FROM centos:7
 
 RUN yum -y -q install libgomp
 COPY --from=build /home/ultimaker/CuraEngine/build /opt/CuraEngine
+
+ENV CURA_ENGINE_SEARCH_PATH=/defs/
 RUN mkdir /defs
 ADD https://raw.githubusercontent.com/Ultimaker/Cura/master/resources/definitions/fdmextruder.def.json /defs/
 ADD https://raw.githubusercontent.com/Ultimaker/Cura/master/resources/definitions/fdmprinter.def.json /defs/
