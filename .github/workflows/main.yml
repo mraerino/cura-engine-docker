@@ -21,7 +21,7 @@ jobs:
         run: docker push ${IMAGE_BASE}:${GITHUB_SHA}
       - name: Push branch image
         run: |
-          export GITHUB_BRANCH=${GITHUB_REF:%refs/heads/*}
+          export GITHUB_BRANCH=${GITHUB_REF#refs/heads/}
           export DOCKER_BRANCH_TAG=${GITHUB_BRANCH//\//-}
           docker tag ${IMAGE_BASE}:${GITHUB_SHA} ${IMAGE_BASE}:${DOCKER_BRANCH_TAG}
           docker push ${IMAGE_BASE}:${DOCKER_BRANCH_TAG}
