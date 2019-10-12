@@ -14,7 +14,9 @@ jobs:
       - name: Build the Docker container image
         run: docker build -t ${IMAGE_BASE}:${GITHUB_SHA} .
       - name: Login to Docker registry
-        run: docker login docker.pkg.github.com -u publisher -p "${GITHUB_TOKEN}"
+        run: docker login docker.pkg.github.com -u publisher -p "${GITHUB_REGISTRY_TOKEN}"
+        env:
+          GITHUB_REGISTRY_TOKEN: ${{ secrets.GITHUB_REGISTRY_TOKEN }}
       - name: Push commit image
         run: docker push ${IMAGE_BASE}:${GITHUB_SHA}
       - name: Push branch image
