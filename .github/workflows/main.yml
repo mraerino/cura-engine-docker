@@ -22,7 +22,7 @@ jobs:
           docker tag ${IMAGE_BASE}:${GITHUB_SHA} ${IMAGE_BASE}:${DOCKER_BRANCH_TAG}
           docker push ${IMAGE_BASE}:${DOCKER_BRANCH_TAG}
       - name: Push latest image
-        if: GITHUB_REF == "refs/heads/main"
+        if: github.ref == "refs/heads/main"
         run: |
           docker tag ${IMAGE_BASE}:${GITHUB_SHA} ${IMAGE_BASE}:latest
           docker push ${IMAGE_BASE}:latest
